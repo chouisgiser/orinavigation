@@ -1,0 +1,16 @@
+#spring:
+#  resources:
+#    static-locations: classpath:/templates/
+
+mybatis:
+  mapperLocations: classpath:mybatis/*-mapper.xml
+  configLocation: classpath:mybatis/mybatis-conf.xml
+  typeAliasesPackage: com.orinavigation
+  checkConfigLocation: false
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lbs_server
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver

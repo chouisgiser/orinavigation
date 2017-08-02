@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orinavigation.dao.INodeDao">
+    <select id="getNodes" resultType="com.orinavigation.entity.NodeBean">
+        select * from node
+    </select>
+
+    <select id="getNode" resultType="com.orinavigation.entity.NodeBean" parameterType="Integer">
+        select * from node where nodeid = #{nodeid}
+    </select>
+</mapper>

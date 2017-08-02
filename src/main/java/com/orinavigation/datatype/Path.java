@@ -1,7 +1,6 @@
-package com.orinavigation.entity;
+package com.orinavigation.datatype;
 
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by Chou on 2017/7/31.

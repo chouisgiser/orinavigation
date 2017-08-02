@@ -1,4 +1,4 @@
-package com.orinavigation.entity;
+package com.orinavigation.datatype;
 
 public class Node {
     private int fromid; //the start node id of the edge
@@ -27,5 +27,9 @@ public class Node {
 
     public void setVisited(boolean visited){
         this.visited = visited;
+    }
+
+    public void setFirstEdge(Edge firstEdge){
+        this.firstEdge = firstEdge;
     }
 }

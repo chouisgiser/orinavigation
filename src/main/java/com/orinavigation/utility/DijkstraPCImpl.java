@@ -1,14 +1,14 @@
 package com.orinavigation.utility;
 
-import com.orinavigation.entity.Edge;
-import com.orinavigation.entity.Network;
-import com.orinavigation.entity.Node;
-import com.orinavigation.entity.Path;
+import com.orinavigation.datatype.Edge;
+import com.orinavigation.datatype.Network;
+import com.orinavigation.datatype.Node;
+import com.orinavigation.datatype.Path;
 
 /**
  * Created by Chou on 2017/7/31.
  */
-public class DijkstraPCImpl implements IPathCompution{
+public class DijkstraPCImpl implements IPathComputation{
 
     @Override
     public Path shortestPath(Network network, Node stnode, Node endnode) {
@@ -18,20 +18,25 @@ public class DijkstraPCImpl implements IPathCompution{
 
         disArray[stnode.getFromid()]=0;
         stnode.setVisited(true);
+        Node localNode = stnode;
         for(int i = 0; i < networkSize-1;i++){
-            Node localNode = stnode;
             Node localNearNode = getLocalNearest(network,localNode,disArray);
-            int localNearid = localNearNode.getFromid();
+            if(localNearNode!=null){
+                int localNearid = localNearNode.getFromid();
 
-            Edge tempEdge = localNearNode.getFirstEdge();
-            while(tempEdge!=null){
-                int tempid = tempEdge.getDestid();
-                Node nextNode = network.getNodes().get(tempid);
-                double tempWeight = tempEdge.getWeight();
-                if(!nextNode.getVisited() && (disArray[localNearid]+tempWeight)<disArray[tempid]){
-                    disArray[tempid] = disArray[localNearid]+tempWeight;
-                    pathrecord[tempid] = localNearid;
+                Edge tempEdge = localNearNode.getFirstEdge();
+                while(tempEdge!=null){
+                    int tempid = tempEdge.getDestid();
+                    Node nextNode = network.getNodeById(tempid);
+                    double tempWeight = tempEdge.getWeight();
+                    if(!nextNode.getVisited() && (disArray[localNearid]+tempWeight)<disArray[tempid]){
+                        disArray[tempid] = disArray[localNearid]+tempWeight;
+                        pathrecord[tempid] = localNearid;
+                    }
+                    tempEdge = tempEdge.getNextEdge();
                 }
+
+                localNode = localNearNode;
             }
         }
 
@@ -39,7 +44,7 @@ public class DijkstraPCImpl implements IPathCompution{
         path.nodesequence.addFirst(endnode);
         int preid = endnode.getFromid();
         while(preid!=stnode.getFromid()){
-            Node preNode = network.getNodes().get(preid);
+            Node preNode = network.getNodeById(preid);
             path.nodesequence.addFirst(preNode);
         }
         path.nodesequence.addFirst(stnode);
@@ -59,6 +64,7 @@ public class DijkstraPCImpl implements IPathCompution{
             int destid = tempEdge.getDestid();
             disArray[destid] = tempEdge.getWeight();
             pathrecord[destid] = stnode.getFromid();
+            tempEdge = tempEdge.getNextEdge();
         }
 
         return disArray;
@@ -70,12 +76,15 @@ public class DijkstraPCImpl implements IPathCompution{
         Node tempNode = null;
         while(tempEdge!=null){
             int tempid = tempEdge.getDestid();
-            if (!network.getNodes().get(tempid).getVisited() && disArray[tempid]<tempDis){
+            if (!network.getNodeById(tempid).getVisited() && disArray[tempid]<tempDis){
                 tempDis = disArray[tempid];
-                tempNode =  network.getNodes().get(tempid);
+                tempNode =  network.getNodeById(tempid);
             }
+            tempEdge = tempEdge.getNextEdge();
         }
-        tempNode.setVisited(true);
+        if(tempNode!=null){
+            tempNode.setVisited(true);
+        }
         return tempNode;
     }
 }
