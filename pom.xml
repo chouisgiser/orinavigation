@@ -6,6 +6,10 @@
 	<groupId>com</groupId>
 	<artifactId>orinavigation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<modules>
+		<module>webapp</module>
+		<module>webapp</module>
+	</modules>
 
 	<packaging>pom</packaging>
 

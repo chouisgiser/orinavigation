@@ -1,6 +1,7 @@
 package com.orinavigation.datatype;
 
 public class Edge {
+
     private int destid; //the destination node id of the edge
 
     private Edge nextEdge; //the next edge having the same start node

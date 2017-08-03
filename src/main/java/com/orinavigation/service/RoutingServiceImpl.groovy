@@ -10,8 +10,9 @@ import com.orinavigation.datatype.Path
 import com.orinavigation.entity.EdgeBean
 import com.orinavigation.entity.NodeBean
 import com.orinavigation.entity.PoiBean
-import com.orinavigation.utility.DijkstraPCImpl
+import com.orinavigation.utility.DijkstraPCImplByHeap
 import com.orinavigation.utility.IPathComputation
+import net.sf.json.JSONArray
 import net.sf.json.JSONObject
 import org.springframework.stereotype.Service
 
@@ -44,18 +45,23 @@ class RoutingServiceImpl implements IRoutingService {
             routingResult.put("code",200)
             Node startNode = network.getNodeById(startPoi.nid)
             Node endNode = network.getNodeById(endPoi.nid)
-            IPathComputation iPathComputation = new DijkstraPCImpl()
+            IPathComputation iPathComputation = new DijkstraPCImplByHeap()
             Path path = iPathComputation.shortestPath(network,startNode,endNode)
             if(path== null){
                 routingResult.put("message","These two places are not connected")
             }
             else{
-                routingResult.put("data",path)
+                JSONObject jsonObject = new JSONObject()
+                JSONArray jsonArray = new JSONArray()
+                for (int m = 0; m < path.nodesequence.size(); m++){
+                    NodeBean nodeBean = iNodeDao.getNode(path.nodesequence.get(m).getFromid())
+                    jsonObject = JSONObject.fromObject(nodeBean)
+                    jsonArray.add(jsonObject)
+                }
+                routingResult.put("data",jsonArray)
+                routingResult.put("distance",path.distance)
             }
         }
-
-
-        //JSONObject jsonPath = JSONObject.fromObject(path)
         return routingResult
     }
 
@@ -63,7 +69,6 @@ class RoutingServiceImpl implements IRoutingService {
         List<NodeBean> nodeBeanList = iNodeDao.getNodes()
 
         List<Node> nodeList = new ArrayList<Node>()
-        int m = 0
         for(int i=0; i < nodeBeanList.size(); i++){
             NodeBean nodeBean = nodeBeanList.get(i)
             Node node =  new Node(nodeBean.nodeid)
@@ -78,14 +83,10 @@ class RoutingServiceImpl implements IRoutingService {
                     edge = tempEdge
                 }
             }
-
             nodeList.add(node)
         }
-
         Network network = new Network(nodeList)
-
         return network
-
     }
 
 }
