@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link ref="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
-    <link ref="@{bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
-    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
-    <script src="/static/js/myScripts.js"></script>
-    <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
-    <link href="/static/css/myStyle.css" type="text/css" />
+    <meta charset="UTF-8"/>
+    <title>OriNavigation</title>
+    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:ref="@{bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet'/>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
+    <link th:href="@{css/myStyle.css}" rel='stylesheet'/>
 </head>
+
 <body>
-
 <div id='map'></div>
-
 </body>
+
+<script th:src="@{js/myScripts.js}"></script>
 </html>

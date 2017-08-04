@@ -1,5 +1,7 @@
 package com.orinavigation.datatype;
 
+import com.vividsolutions.jts.geom.Coordinate;
+
 public class Node {
     private int fromid; //the start node id of the edge
 
@@ -8,6 +10,10 @@ public class Node {
     private boolean visited; //tag whether the node is visited
 
     private double dis2st;
+
+    private Coordinate coordinate;
+
+    private double totalCost;
 
     private int preid; //record the precursor node id of the navigation path
 
@@ -19,7 +25,7 @@ public class Node {
     }
 
     public int getFromid(){
-        return fromid;
+        return this.fromid;
     }
 
     public Edge getFirstEdge(){
@@ -27,7 +33,7 @@ public class Node {
     }
 
     public boolean getVisited(){
-        return visited;
+        return this.visited;
     }
 
     public void setVisited(boolean visited){
@@ -47,10 +53,26 @@ public class Node {
     }
 
     public int getPreid(){
-        return preid;
+        return this.preid;
     }
 
     public void setPreid(int preid){
         this.preid = preid;
+    }
+
+    public Coordinate getCoordinate(){
+        return this.coordinate;
+    }
+
+    public void setCoordinate(Coordinate coordinate){
+        this.coordinate = coordinate;
+    }
+
+    public double getTotalCost(){
+        return this.totalCost;
+    }
+
+    public void setTotalCost(double totalCost){
+        this.totalCost = totalCost;
     }
 }

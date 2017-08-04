@@ -21,8 +21,6 @@ public class DijkstraPCImplByHeap implements IPathComputation{
 
     @Override
     public Path shortestPath(Network network, Node stnode, Node endnode) {
-        //int networkSize = network.getNum();
-        //int[] pathrecord = new int[networkSize];
 
         PriorityQueue<Node> queue = new PriorityQueue<>(11,nodeComparator);
         stnode.setDis2st(0);
@@ -61,23 +59,4 @@ public class DijkstraPCImplByHeap implements IPathComputation{
         return path;
     }
 
-
-/*    public double[] initNetwork (Network network,Node stnode,int[] pathrecord){
-        int networkSize = network.getNum();
-        double[] disArray = new double[networkSize];
-        for(int i = 0; i<networkSize; i++){
-            disArray[i] = Double.MAX_VALUE;
-            pathrecord[i] = -1;
-        }
-
-        Edge tempEdge = stnode.getFirstEdge();
-        while(tempEdge!=null){
-            int destid = tempEdge.getDestid();
-            disArray[destid-1] = tempEdge.getWeight();
-            pathrecord[destid-1] = stnode.getFromid();
-            tempEdge = tempEdge.getNextEdge();
-        }
-
-        return disArray;
-    }*/
 }

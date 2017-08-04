@@ -12,6 +12,7 @@ import com.orinavigation.entity.NodeBean
 import com.orinavigation.entity.PoiBean
 import com.orinavigation.utility.DijkstraPCImplByHeap
 import com.orinavigation.utility.IPathComputation
+import com.vividsolutions.jts.geom.Coordinate
 import net.sf.json.JSONArray
 import net.sf.json.JSONObject
 import org.springframework.stereotype.Service
@@ -72,6 +73,8 @@ class RoutingServiceImpl implements IRoutingService {
         for(int i=0; i < nodeBeanList.size(); i++){
             NodeBean nodeBean = nodeBeanList.get(i)
             Node node =  new Node(nodeBean.nodeid)
+            Coordinate coordinate = new Coordinate(nodeBean.x_cooridiante,nodeBean.y_cooridiante)
+            node.setCoordinate(coordinate)
 
             if(iEdgeDao.getEdgeByStart(nodeBean.nodeid).size() > 0){
                 List<EdgeBean> edgeBeanList = iEdgeDao.getEdgeByStart(nodeBean.nodeid)

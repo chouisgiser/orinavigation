@@ -10,6 +10,13 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+    suffix: .html
+    content-type: text/html
+
 
 server:
   context-path: /orinavigation
