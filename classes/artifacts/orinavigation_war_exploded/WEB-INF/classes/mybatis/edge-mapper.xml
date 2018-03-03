@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orinavigation.dao.IEdgeDao">
+    <select id="getEdges" resultType="com.orinavigation.entity.EdgeBean">
+        select * from edge
+    </select>
+
+    <select id="getEdge" resultType="com.orinavigation.entity.EdgeBean" parameterType="Integer">
+        select * from edge where edgeid = #{edgeid}
+    </select>
+
+    <select id="getEdgeByStart" resultType="com.orinavigation.entity.EdgeBean" parameterType="Integer">
+        select * from edge where startnid = #{startnid}
+    </select>
+
+    <select id="getEdgeByNode" resultType="com.orinavigation.entity.EdgeBean" parameterType="Integer">
+        select * from edge where startnid = #{startnid} AND endnid = #{endnid}
+    </select>
+</mapper>

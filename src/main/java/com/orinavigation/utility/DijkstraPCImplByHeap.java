@@ -29,6 +29,8 @@ public class DijkstraPCImplByHeap implements IPathComputation{
         while(!queue.isEmpty()){
             Node topnode = queue.poll();
             int preid = topnode.getFromid();
+            if (topnode == endnode)
+                break;
             if(topnode.getVisited())
                 continue;
             topnode.setVisited(true);

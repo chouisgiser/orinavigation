@@ -36,10 +36,10 @@
 
 			<!-- Springboot部署到tomcat需要把内嵌的tomcat去除,以免jar冲突-->
 			<exclusions>
-				<!--<exclusion>-->
-				<!--<groupId>org.springframework.boot</groupId>-->
-				<!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
-				<!--</exclusion>-->
+				<exclusion>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
 
 				<exclusion>
 					<artifactId>log4j-over-slf4j</artifactId>

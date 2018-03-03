@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orinavigation.dao.IPOIDao">
+    <select id="getPOILikeName" resultType="com.orinavigation.entity.PoiBean" parameterType="String">
+        select * from poi where name LIKE concat('%',#{name},'%')
+    </select>
+
+    <select id="getPOI" resultType="com.orinavigation.entity.PoiBean" parameterType="Integer">
+        select * from poi where pid = #{pid}
+    </select>
+
+    <select id="getPOIByName" resultType="com.orinavigation.entity.PoiBean" parameterType="String">
+        select * from poi where name = #{name}
+    </select>
+</mapper>

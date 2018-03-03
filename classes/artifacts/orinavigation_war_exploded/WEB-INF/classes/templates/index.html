@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>OriNavigation</title>
+    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:ref="@{bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet'/>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
+    <link th:href="@{css/myStyle.css}" rel='stylesheet'/>
+</head>
+
+<body>
+<div id='map'></div>
+</body>
+
+<script th:src="@{js/myScripts.js}"></script>
+</html>

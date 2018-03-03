@@ -1,0 +1,22 @@
+mybatis:
+  mapperLocations: classpath:mybatis/*-mapper.xml
+  configLocation: classpath:mybatis/mybatis-conf.xml
+  typeAliasesPackage: com.orinavigation
+  checkConfigLocation: false
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lbs_server
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+    suffix: .html
+    content-type: text/html
+
+
+server:
+  context-path: /orinavigation
